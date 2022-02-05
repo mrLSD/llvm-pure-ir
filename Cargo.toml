@@ -1,0 +1,21 @@
+[package]
+name = "llvm-pure-ir"
+description = "Pure implementation of LLVM IR compatible with Official Manual Reference, without any external FFI dependency"
+authors = ["Evgeny Ukhanov <evgeny@ukhanov.org.ua>"]
+version = "0.1.0"
+readme = "README.md"
+license = "MIT"
+keywords = ["llvm", "codegen"]
+edition = "2021"
+
+[dependencies]
+
+[features]
+default = ["llvm-15"]
+llvm-16 = []
+llvm-15 = []
+llvm-14 = []
+llvm-13 = []
+llvm-12 = []
+llvm-11 = []
+llvm-10 = []
