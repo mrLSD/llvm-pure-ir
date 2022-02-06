@@ -19,7 +19,7 @@ use crate::llvm::types::Type;
 /// There are two forms of the ‘ret’ instruction: one that returns a value
 /// and then causes control flow, and one that just causes control flow to
 /// occur.
-/// https://llvm.org/docs/LangRef.html#id1437
+/// [Ret instruction](https://llvm.org/docs/LangRef.html#id1437)
 #[derive(Debug, Eq, PartialEq, Clone)]
 pub struct Ret(pub Option<(Type, String)>);
 
@@ -32,7 +32,7 @@ pub struct Ret(pub Option<(Type, String)>);
 /// br i1 <cond>, label <iftrue>, label <iffalse>
 /// br label <dest>
 /// ```
-/// https://llvm.org/docs/LangRef.html#br-instruction
+/// [br-instruction](https://llvm.org/docs/LangRef.html#br-instruction)
 #[derive(Debug, Eq, PartialEq, Clone)]
 pub enum Br {
     Conditional(bool, String, String),
@@ -46,7 +46,7 @@ pub enum Br {
 /// ```html
 /// switch <intty> <value>, label <defaultdest> [ <intty> <val>, label <dest> ... ]
 /// ```
-/// https://llvm.org/docs/LangRef.html#switch-instruction
+/// [switch-instruction](https://llvm.org/docs/LangRef.html#switch-instruction)
 #[derive(Debug, Eq, PartialEq, Clone)]
 pub struct Switch {
     pub choices: Vec<(String, String)>,
@@ -59,7 +59,7 @@ pub struct Switch {
 /// ```html
 /// indirectbr <somety>* <address>, [ label <dest1>, label <dest2>, ... ]
 /// ```
-/// https://llvm.org/docs/LangRef.html#indirectbr-instruction
+/// [indirectbr-instruction](https://llvm.org/docs/LangRef.html#indirectbr-instruction)
 #[derive(Debug, Eq, PartialEq, Clone)]
 pub struct IndirectBr {
     pub ty: String,
@@ -126,7 +126,7 @@ pub struct IndirectBr {
 /// [operand bundles] to label <normal label> unwind label <exception label>
 /// ```
 ///
-/// https://llvm.org/docs/LangRef.html#invoke-instruction
+/// [invoke-instruction](https://llvm.org/docs/LangRef.html#invoke-instruction)
 #[derive(Debug, Eq, PartialEq, Clone)]
 pub struct Invoke {
     pub ret_val: String,
@@ -203,7 +203,7 @@ pub struct CallBr();
 /// the same type as the result of any ‘landingpad’ instruction in
 /// the same function.
 ///
-/// https://llvm.org/docs/LangRef.html#resume-instruction
+/// [resume-instruction](https://llvm.org/docs/LangRef.html#resume-instruction)
 #[derive(Debug, Eq, PartialEq, Clone)]
 pub struct Resume {
     pub resume_type: Type,
@@ -226,7 +226,7 @@ pub struct Resume {
 /// The handlers are a nonempty list of successor blocks that each
 /// begin with a catchpad instruction.
 ///
-/// https://llvm.org/docs/LangRef.html#catchswitch-instruction
+/// [catchswitch-instruction](https://llvm.org/docs/LangRef.html#catchswitch-instruction)
 #[derive(Debug, Eq, PartialEq, Clone)]
 pub struct CatchSwitch {
     pub result_val: String,
@@ -242,7 +242,7 @@ pub struct CatchSwitch {
 /// exits. It must be a catchpad. The second argument to a ‘catchret’
 /// specifies where control will transfer to next.
 ///
-/// https://llvm.org/docs/LangRef.html#catchret-instruction
+/// [catchret-instruction](https://llvm.org/docs/LangRef.html#catchret-instruction)
 #[derive(Debug, Eq, PartialEq, Clone)]
 pub struct CatchRet {
     pub catch: String,
@@ -414,9 +414,9 @@ impl std::fmt::Display for CatchSwitch {
             .enumerate()
             .fold(String::new(), |s, (i, v)| {
                 if i > 1 {
-                    format!("{}, label %{}", s, v)
+                    format!("{s}, label %{v}")
                 } else {
-                    format!("label %{}", v)
+                    format!("label %{v}")
                 }
             });
         let default = if let Some(x) = &self.default_label {
