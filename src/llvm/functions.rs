@@ -134,7 +134,7 @@ impl std::fmt::Display for Function {
             .argument_list
             .iter()
             .enumerate()
-            .fold("".to_string(), |s, (i, x)| {
+            .fold(String::new(), |s, (i, x)| {
                 if i == 0 {
                     format!("{x}")
                 } else {

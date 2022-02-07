@@ -303,7 +303,7 @@ impl std::fmt::Display for Switch {
             .choices
             .iter()
             .enumerate()
-            .fold("".to_string(), |s, (i, (int_ty, label))| {
+            .fold(String::new(), |s, (i, (int_ty, label))| {
                 // First item
                 let s = if i < 1 {
                     format!("i32 {}, label %{} [\n", int_ty, label)
@@ -326,7 +326,7 @@ impl std::fmt::Display for IndirectBr {
             .choices
             .iter()
             .enumerate()
-            .fold("".to_string(), |s, (i, (int_ty, label))| {
+            .fold(String::new(), |s, (i, (int_ty, label))| {
                 // First item
                 let s = if i < 1 {
                     format!("i32 {int_ty}, label %{label} [\n")
@@ -369,7 +369,7 @@ impl std::fmt::Display for Invoke {
             .function_args
             .iter()
             .enumerate()
-            .fold("".to_string(), |s, (i, v)| {
+            .fold(String::new(), |s, (i, v)| {
                 if i > 0 {
                     format!("{}, {} {}", s, v.0, v.1)
                 } else {
@@ -412,7 +412,7 @@ impl std::fmt::Display for CatchSwitch {
             .handler_labels
             .iter()
             .enumerate()
-            .fold("".to_string(), |s, (i, v)| {
+            .fold(String::new(), |s, (i, v)| {
                 if i > 1 {
                     format!("{}, label %{}", s, v)
                 } else {

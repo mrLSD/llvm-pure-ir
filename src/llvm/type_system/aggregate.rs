@@ -56,7 +56,7 @@ impl std::fmt::Display for StructureType {
             .type_list
             .iter()
             .enumerate()
-            .fold("".to_string(), |s, (i, ty)| {
+            .fold(String::new(), |s, (i, ty)| {
                 // Calculation for comma for 1-th element
                 if i > 0 {
                     format!("{s}, {ty}")

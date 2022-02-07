@@ -339,7 +339,7 @@ impl std::fmt::Display for Phi {
             .params
             .iter()
             .enumerate()
-            .fold("".to_string(), |s, (i, v)| {
+            .fold(String::new(), |s, (i, v)| {
                 if i > 0 {
                     format!("{}, [{}, {}]", s, v.0, v.1)
                 } else {
@@ -421,7 +421,7 @@ impl std::fmt::Display for Call {
                 .fnty
                 .iter()
                 .enumerate()
-                .fold("".to_string(), |s, (i, x)| {
+                .fold(String::new(), |s, (i, x)| {
                     if i == 0 {
                         format!("{}", x)
                     } else {
@@ -440,7 +440,7 @@ impl std::fmt::Display for Call {
             .function_args
             .iter()
             .enumerate()
-            .fold("".to_string(), |s, (i, v)| {
+            .fold(String::new(), |s, (i, v)| {
                 if i > 0 {
                     format!("{}, {} {}", s, v.0, v.1)
                 } else {
@@ -468,7 +468,7 @@ impl std::fmt::Display for Landingpad {
         let clause = self
             .clause
             .iter()
-            .fold("".to_string(), |s, v| format!("{} {}", s, v));
+            .fold(String::new(), |s, v| format!("{} {}", s, v));
 
         s = format!("{} {}", s, clause);
 

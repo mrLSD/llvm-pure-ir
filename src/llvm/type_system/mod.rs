@@ -49,7 +49,7 @@ impl std::fmt::Display for FunctionType {
             .parameter_list
             .iter()
             .enumerate()
-            .fold("".to_string(), |s, (i, t)| {
+            .fold(String::new(), |s, (i, t)| {
                 // Check for comma
                 if i > 0 {
                     format!("{s}, {t}")

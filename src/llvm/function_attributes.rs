@@ -83,7 +83,7 @@ impl std::fmt::Display for FunctionAttributesType {
         let s = match self {
             FunctionAttributesType::AlignStack(x) => format!("alignstack({})", x),
             FunctionAttributesType::AllocSize(x) => {
-                let s = x.iter().enumerate().fold("".to_string(), |x, (i, v)| {
+                let s = x.iter().enumerate().fold(String::new(), |x, (i, v)| {
                     if i > 1 {
                         format!("{}, {}", x, v)
                     } else {
@@ -160,10 +160,7 @@ impl std::fmt::Display for FunctionAttributesType {
 
 impl std::fmt::Display for FunctionAttributes {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        let s = self
-            .0
-            .iter()
-            .fold("".to_string(), |s, v| format!("{s} {v}"));
+        let s = self.0.iter().fold(String::new(), |s, v| format!("{s} {v}"));
         write!(f, "\"{s}\"")
     }
 }

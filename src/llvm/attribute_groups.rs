@@ -36,7 +36,7 @@ impl std::fmt::Display for Personality {
         let s = self
             .0
             .iter()
-            .fold("".to_string(), |s, x| format!("{s} #{x}"));
+            .fold(String::new(), |s, x| format!("{s} #{x}"));
         write!(f, "{s}")
     }
 }
