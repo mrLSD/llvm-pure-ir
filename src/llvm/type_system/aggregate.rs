@@ -68,12 +68,12 @@ impl std::fmt::Display for StructureType {
             if self.packed {
                 format!("<{{ {s} }}>")
             } else {
-                format!("{{ {} }}", s)
+                format!("{{ {s} }}")
             }
         } else if self.packed {
-            format!("type {{ {} }}", s)
+            format!("type {{ {s} }}")
         } else {
-            format!("type <{{ {} }}>", s)
+            format!("type <{{ {s} }}>")
         };
         write!(f, "{s}")
     }

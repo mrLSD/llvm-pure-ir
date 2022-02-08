@@ -179,13 +179,13 @@ impl std::fmt::Display for Function {
             s = format!("{s} {x}");
         }
         if let Some(x) = &self.prologue {
-            s = format!("{} prologue {}", s, x);
+            s = format!("{s} prologue {x}");
         }
         if let Some(x) = &self.personality {
-            s = format!("{} personality {}", s, x);
+            s = format!("{s} personality {x}");
         }
         if let Some(x) = &self.metadata {
-            s = format!("{} {}", s, x);
+            s = format!("{s} {x}");
         }
 
         write!(f, "{s}")
@@ -199,10 +199,10 @@ impl std::fmt::Display for ArgumentList {
             s = format!("{}", t);
         }
         if let Some(x) = &self.attributes {
-            s = format!("{} {}", s, x);
+            s = format!("{s} {x}");
         }
         if let Some(x) = &self.name {
-            s = format!("{} {}", s, x);
+            s = format!("{s} {x}");
         }
         if self.variable_argument {
             s = "...".to_string();

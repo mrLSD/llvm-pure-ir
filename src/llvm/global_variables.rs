@@ -118,19 +118,19 @@ impl std::fmt::Display for GlobalVariable {
         }
         s = format!("{} {s} {}", self.global_variable_kind, self.value_type);
         if self.initializer_constant.is_some() {
-            s = format!("{} {}", s, self.initializer_constant.as_ref().unwrap());
+            s = format!("{s} {}", self.initializer_constant.as_ref().unwrap());
         }
         if self.section.is_some() {
-            s = format!("{}, {}", s, self.section.as_ref().unwrap());
+            s = format!("{s}, {}", self.section.as_ref().unwrap());
         }
         if self.comdat.is_some() {
-            s = format!("{}, {}", s, self.comdat.as_ref().unwrap());
+            s = format!("{}, {}", self.comdat.as_ref().unwrap());
         }
         if self.alignment.is_some() {
-            s = format!("{}, {}", s, self.alignment.as_ref().unwrap());
+            s = format!("{s}, {}", self.alignment.as_ref().unwrap());
         }
         if self.metadata.is_some() {
-            s = format!("{}, {}", s, self.metadata.as_ref().unwrap());
+            s = format!("{s}, {}", self.metadata.as_ref().unwrap());
         }
 
         write!(f, "{s}")

@@ -341,9 +341,9 @@ impl std::fmt::Display for Phi {
             .enumerate()
             .fold(String::new(), |s, (i, v)| {
                 if i > 0 {
-                    format!("{}, [{}, {}]", s, v.0, v.1)
+                    format!("{s}, [{}, {}]", v.0, v.1)
                 } else {
-                    format!("{} [{}, {}]", s, v.0, v.1)
+                    format!("{s} [{}, {}]", v.0, v.1)
                 }
             });
 

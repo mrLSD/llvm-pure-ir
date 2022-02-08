@@ -60,7 +60,7 @@ impl std::fmt::Display for Alias {
         if self.unnamed_addr.is_some() {
             s = format!("{s} {}", self.unnamed_addr.as_ref().unwrap());
         }
-        s = format!("{} alias", s);
+        s = format!("{s} alias");
 
         let s = self
             .aliasee_type

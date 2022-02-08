@@ -273,11 +273,11 @@ impl std::fmt::Display for FMul {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         let mut s = "fmul".to_string();
         if let Some(v) = &self.fast_math_flags {
-            s = format!("{} {}", s, v)
+            s = format!("{s} {v}")
         }
         s = format!(
-            "{} = {} {} {}, {}",
-            self.result, s, self.ty, self.op1, self.op2
+            "{} = {s} {} {}, {}",
+            self.result, self.ty, self.op1, self.op2
         );
         write!(f, "{s}")
     }
@@ -315,11 +315,11 @@ impl std::fmt::Display for FDiv {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         let mut s = "fdiv".to_string();
         if let Some(v) = &self.fast_math_flags {
-            s = format!("{} {}", s, v)
+            s = format!("{s} {v}")
         }
         s = format!(
-            "{} = {} {} {}, {}",
-            self.result, s, self.ty, self.op1, self.op2
+            "{} = {s} {} {}, {}",
+            self.result, self.ty, self.op1, self.op2
         );
         write!(f, "{s}")
     }

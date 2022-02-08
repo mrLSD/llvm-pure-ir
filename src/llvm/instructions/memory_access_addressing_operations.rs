@@ -196,11 +196,11 @@ impl std::fmt::Display for GetElementPtr {
         let s_val = format!("{}, {}* {}", self.ty, self.ty_pointer, self.ptr_val);
         let r = self.range_val.iter().fold(String::new(), |s, v| {
             if v.0.is_some() {
-                format!("{}, inrange {} {}", s, v.1, v.2)
+                format!("{s}, inrange {} {}", v.1, v.2)
             } else {
-                format!("{}, {} {}", s, v.1, v.2)
+                format!("{s}, {} {}", v.1, v.2)
             }
         });
-        write!(f, "{} ({}{})", s, s_val, r)
+        write!(f, "{s} ({s_val}{r})")
     }
 }
