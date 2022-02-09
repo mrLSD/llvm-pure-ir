@@ -18,7 +18,7 @@
 //!     [(unnamed_addr|local_unnamed_addr)]
 //!     alias <AliaseeTy>, <AliaseeTy>* @<Aliasee>
 //! ```
-//! https://llvm.org/docs/LangRef.html#aliases
+//! [aliases](https://llvm.org/docs/LangRef.html#aliases)
 
 use super::{
     dll_storage_classes::DllStorageClasses, global_variables::UnnamedAddr,

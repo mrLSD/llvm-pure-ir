@@ -6,7 +6,7 @@
 //! program is undefined. The following calling conventions are
 //! supported by LLVM, and more may be added in the future.
 //!
-//! https://llvm.org/docs/LangRef.html#callingconv
+//! [callingconv](https://llvm.org/docs/LangRef.html#callingconv)
 
 #[derive(Debug, Eq, PartialEq, Clone)]
 pub enum CallingConvention {

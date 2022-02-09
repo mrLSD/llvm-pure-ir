@@ -12,7 +12,7 @@
 //! An object may refer to more than one attribute group. In that
 //! situation, the attributes from the different groups are merged.
 //!
-//! https://llvm.org/docs/LangRef.html#attribute-groups
+//! [attribute-groups](https://llvm.org/docs/LangRef.html#attribute-groups)
 
 #[derive(Debug, Eq, PartialEq, Clone)]
 pub struct Personality(Vec<i32>);

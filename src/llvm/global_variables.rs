@@ -124,7 +124,7 @@ impl std::fmt::Display for GlobalVariable {
             s = format!("{s}, {}", self.section.as_ref().unwrap());
         }
         if self.comdat.is_some() {
-            s = format!("{}, {}", self.comdat.as_ref().unwrap());
+            s = format!("{s}, {}", self.comdat.as_ref().unwrap());
         }
         if self.alignment.is_some() {
             s = format!("{s}, {}", self.alignment.as_ref().unwrap());

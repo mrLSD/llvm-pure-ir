@@ -6,7 +6,7 @@
 //! value: they produce control flow, not values (the one exception being
 //! the ‘invoke’ instruction).
 //!
-//! https://llvm.org/docs/LangRef.html#terminator-instructions
+//! [terminator-instructions](https://llvm.org/docs/LangRef.html#terminator-instructions)
 use crate::llvm::addrspace::AddrSpace;
 use crate::llvm::calling_convention::CallingConvention;
 use crate::llvm::function_attributes::FunctionAttributes;
@@ -258,7 +258,7 @@ pub struct CatchRet {
 /// pad (as described in the EH documentation), the cleanupret’s
 /// behavior is undefined.
 ///
-/// https://llvm.org/docs/LangRef.html#cleanupret-instruction
+/// [cleanupret-instruction](https://llvm.org/docs/LangRef.html#cleanupret-instruction)
 #[derive(Debug, Eq, PartialEq, Clone)]
 pub struct CleanupRet {
     pub values: String,
@@ -271,7 +271,7 @@ pub struct CleanupRet {
 /// that the code after a no-return function cannot be reached, and
 /// other facts.
 ///
-/// https://llvm.org/docs/LangRef.html#unreachable-instruction
+/// [unreachable-instruction](https://llvm.org/docs/LangRef.html#unreachable-instruction)
 #[derive(Debug, Eq, PartialEq, Clone)]
 pub struct Unreachable();
 
