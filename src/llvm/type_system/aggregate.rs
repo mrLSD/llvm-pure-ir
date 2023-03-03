@@ -59,14 +59,14 @@ impl std::fmt::Display for StructureType {
             .fold("".to_string(), |s, (i, ty)| {
                 // Calculation for comma for 1-th element
                 if i > 0 {
-                    format!("{}, {}", s, ty)
+                    format!("{s}, {ty}")
                 } else {
-                    format!("{} {}", s, ty)
+                    format!("{s} {ty}")
                 }
             });
         let s = if self.literal {
             if self.packed {
-                format!("<{{ {} }}>", s)
+                format!("<{{ {s} }}>")
             } else {
                 format!("{{ {} }}", s)
             }

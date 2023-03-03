@@ -111,72 +111,72 @@ impl std::fmt::Display for Function {
             FunctionDefinitionType::Define => "define".to_string(),
         };
         if let Some(x) = &self.linkage {
-            s = format!("{} {}", s, x);
+            s = format!("{s} {x}");
         }
         if let Some(x) = &self.preemption_specifier {
-            s = format!("{} {}", s, x);
+            s = format!("{s} {x}");
         }
         if let Some(x) = &self.visibility {
-            s = format!("{} {}", s, x);
+            s = format!("{s} {x}");
         }
         if let Some(x) = &self.dll_storage_class {
-            s = format!("{} {}", s, x);
+            s = format!("{s} {x}");
         }
         if let Some(x) = &self.cconv {
-            s = format!("{} {}", s, x);
+            s = format!("{s} {x}");
         }
         if let Some(x) = &self.ret_attrs {
-            s = format!("{} {}", s, x);
+            s = format!("{s} {x}");
         }
-        s = format!("{} {}", s, self.result_type);
-        s = format!("{} @{}", s, self.function_name);
+        s = format!("{s} {}", self.result_type);
+        s = format!("{s} @{}", self.function_name);
         let arg = self
             .argument_list
             .iter()
             .enumerate()
             .fold("".to_string(), |s, (i, x)| {
                 if i == 0 {
-                    format!("{}", x)
+                    format!("{x}")
                 } else {
-                    format!("{}, {}", s, x)
+                    format!("{s}, {x}")
                 }
             });
-        s = format!("{}({})", s, arg);
+        s = format!("{s}({arg})");
 
         if let Some(x) = &self.unnamed_addr {
-            s = format!("{} {}", s, x);
+            s = format!("{s} {x}");
         }
 
         if let Some(x) = &self.addr_sapce {
-            s = format!("{} {}", s, x);
+            s = format!("{s} {x}");
         }
 
         let fn_attrs = self
             .fn_attrs
             .iter()
-            .fold(" ".to_string(), |s, x| format!("{}{} ", s, x));
-        s = format!("{}{}", s, fn_attrs);
+            .fold(String::new(), |s, x| format!("{s}{x} "));
+        s = format!("{s}{fn_attrs}");
 
         let attr_group = self
             .attr_group
             .iter()
-            .fold("".to_string(), |s, x| format!("{}#{}", s, x));
-        s = format!("{}{}", s, attr_group);
+            .fold(String::new(), |s, x| format!("{s}#{x}"));
+        s = format!("{s}{attr_group}");
 
         if let Some(x) = &self.section_name {
-            s = format!("{} section \"{}\"", s, x);
+            s = format!("{s} section \"{x}\"");
         }
         if let Some(x) = &self.comdat {
-            s = format!("{} comdat {}", s, x);
+            s = format!("{s} comdat {x}");
         }
         if let Some(x) = &self.align {
-            s = format!("{} {}", s, x);
+            s = format!("{s} {x}");
         }
         if let Some(x) = &self.gc {
-            s = format!("{} {}", s, x);
+            s = format!("{s} {x}");
         }
         if let Some(x) = &self.prefix {
-            s = format!("{} {}", s, x);
+            s = format!("{s} {x}");
         }
         if let Some(x) = &self.prologue {
             s = format!("{} prologue {}", s, x);

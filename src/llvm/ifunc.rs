@@ -33,12 +33,12 @@ impl std::fmt::Display for IFunc {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         let mut s = format!("@{} =", self.name);
         if self.linkage.is_some() {
-            s = format!("{} {}", s, self.linkage.as_ref().unwrap());
+            s = format!("{s} {}", self.linkage.as_ref().unwrap());
         }
         if self.visibility.is_some() {
-            s = format!("{} {}", s, self.visibility.as_ref().unwrap());
+            s = format!("{s} {}", self.visibility.as_ref().unwrap());
         }
-        s = format!("{} ifunc {},", s, self.ifunc_type);
+        s = format!("{s} ifunc {},", self.ifunc_type);
 
         let s = self
             .resolver_type

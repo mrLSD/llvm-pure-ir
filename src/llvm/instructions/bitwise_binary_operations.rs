@@ -125,10 +125,10 @@ impl std::fmt::Display for Shl {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         let mut s = "shl".to_string();
         if self.nuw.is_some() {
-            s = format!("{} nuw", s)
+            s = format!("{s} nuw")
         }
         if self.nsw.is_some() {
-            s = format!("{} nsw", s)
+            s = format!("{s} nsw")
         }
         s = format!(
             "{} = {} {} {}, {}",
@@ -142,7 +142,7 @@ impl std::fmt::Display for LShl {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         let mut s = "lshl".to_string();
         if self.exact.is_some() {
-            s = format!("{} exact", s)
+            s = format!("{s} exact")
         }
         s = format!(
             "{} = {} {} {}, {}",
@@ -156,7 +156,7 @@ impl std::fmt::Display for AShr {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         let mut s = "ashr".to_string();
         if self.exact.is_some() {
-            s = format!("{} exact", s)
+            s = format!("{s} exact")
         }
         s = format!(
             "{} = {} {} {}, {}",

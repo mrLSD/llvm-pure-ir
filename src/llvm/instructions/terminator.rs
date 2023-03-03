@@ -293,7 +293,7 @@ impl std::fmt::Display for Br {
             }
             Br::Unconditional(dest) => format!("label %{}", dest),
         };
-        write!(f, "br {}", s)
+        write!(f, "br {s}")
     }
 }
 
@@ -311,12 +311,12 @@ impl std::fmt::Display for Switch {
                     format!("{} i32 {}, label %{}\n", s, int_ty, label)
                 };
                 if i + 1 == self.choices.len() {
-                    format!("{} \n]", s)
+                    format!("{s} \n]")
                 } else {
                     s
                 }
             });
-        write!(f, "switch {}", s)
+        write!(f, "switch {s}")
     }
 }
 
@@ -329,17 +329,17 @@ impl std::fmt::Display for IndirectBr {
             .fold("".to_string(), |s, (i, (int_ty, label))| {
                 // First item
                 let s = if i < 1 {
-                    format!("i32 {}, label %{} [\n", int_ty, label)
+                    format!("i32 {int_ty}, label %{label} [\n")
                 } else {
-                    format!("{} i32 {}, label %{}\n", s, int_ty, label)
+                    format!("{s} i32 {int_ty}, label %{label}\n")
                 };
                 if i + 1 == self.choices.len() {
-                    format!("{} \n]", s)
+                    format!("{s} \n]")
                 } else {
                     s
                 }
             });
-        write!(f, "switch {}", s)
+        write!(f, "switch {s}")
     }
 }
 
@@ -347,7 +347,7 @@ impl std::fmt::Display for Invoke {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         let mut s = format!("%{} = invoke", self.ret_val);
         if let Some(v) = &self.cconv {
-            s = format!("{} {}", s, v)
+            s = format!("{s} {v}")
         }
         if let Some(v) = &self.ret_attr {
             s = format!("{} {}", s, v)
@@ -449,7 +449,7 @@ impl std::fmt::Display for CleanupRet {
         } else {
             format!("%{} unwind to caller", self.values)
         };
-        write!(f, "cleanupret from {}", s)
+        write!(f, "cleanupret from {s}")
     }
 }
 

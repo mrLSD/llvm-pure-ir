@@ -25,8 +25,8 @@ impl std::fmt::Display for Attributes {
         let s = self
             .1
             .iter()
-            .fold(" ".to_string(), |s, x| format!("{}{} ", s, x));
-        let s = format!("attributes #{} = {{{}}}", self.0, s);
+            .fold(" ".to_string(), |s, x| format!("{s}{x} "));
+        let s = format!("attributes #{} = {{{s}}}", self.0);
         write!(f, "{s}")
     }
 }
@@ -36,7 +36,7 @@ impl std::fmt::Display for Personality {
         let s = self
             .0
             .iter()
-            .fold("".to_string(), |s, x| format!("{} #{}", s, x));
+            .fold("".to_string(), |s, x| format!("{s} #{x}"));
         write!(f, "{s}")
     }
 }

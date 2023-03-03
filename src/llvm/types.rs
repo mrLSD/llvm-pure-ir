@@ -1,6 +1,13 @@
 //! # Basic LLVM types
 
-use super::type_system::{aggregate::*, single_value::*, *};
+use super::type_system::{
+    aggregate::{ArrayType, StructureType},
+    single_value::{
+        FloatingPointType, Integer128Type, Integer16Type, Integer1Type, Integer32Type,
+        Integer64Type, Integer8Type, IntegerType, PointerType, VectorType,
+    },
+    FunctionType, VoidType,
+};
 
 #[derive(Debug, Eq, PartialEq, Clone)]
 pub enum Type {
@@ -43,10 +50,12 @@ impl std::fmt::Display for Type {
 }
 
 impl Type {
+    #[must_use]
     pub fn pointer() -> Self {
         Type::Pointer(PointerType::new(None))
     }
 
+    #[must_use]
     pub fn pointer_with_addrspace(addr: i64) -> Self {
         Type::Pointer(PointerType::new(Some(addr)))
     }

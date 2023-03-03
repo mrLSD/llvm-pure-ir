@@ -87,10 +87,10 @@ impl std::fmt::Display for FunctionAttributesType {
                     if i > 1 {
                         format!("{}, {}", x, v)
                     } else {
-                        format!("{} {}", x, v)
+                        format!("{x} {v}")
                     }
                 });
-                format!("allocsize({})", s)
+                format!("allocsize({s})")
             }
             FunctionAttributesType::AlwaysInline => "alwaysinline".to_string(),
             FunctionAttributesType::Builtin => "builtin".to_string(),
@@ -154,7 +154,7 @@ impl std::fmt::Display for FunctionAttributesType {
             FunctionAttributesType::NocfCheck => "nocf_check".to_string(),
             FunctionAttributesType::ShadowCallStack => "shadowcallstack".to_string(),
         };
-        write!(f, "\"{}\"", s)
+        write!(f, "\"{s}\"")
     }
 }
 
@@ -163,7 +163,7 @@ impl std::fmt::Display for FunctionAttributes {
         let s = self
             .0
             .iter()
-            .fold("".to_string(), |s, v| format!("{} {}", s, v));
-        write!(f, "\"{}\"", s)
+            .fold("".to_string(), |s, v| format!("{s} {v}"));
+        write!(f, "\"{s}\"")
     }
 }

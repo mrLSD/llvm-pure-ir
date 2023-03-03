@@ -463,7 +463,7 @@ impl std::fmt::Display for Landingpad {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         let mut s = format!("{} = landingpad {} ", self.resultval, self.resultty);
         if self.cleanup.is_some() {
-            s = format!("{} cleanup", s);
+            s = format!("{s} cleanup");
         }
         let clause = self
             .clause

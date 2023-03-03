@@ -138,14 +138,14 @@ impl std::fmt::Display for Alloca {
         if let Some(el) = &self.elements {
             let els = el
                 .iter()
-                .fold("".to_string(), |s, v| format!("{}, {} {}", s, v.0, v.1));
-            s = format!("{} {}", s, els);
+                .fold(String::new(), |s, v| format!("{s}, {} {}", v.0, v.1));
+            s = format!("{s} {els}");
         }
         if let Some(v) = &self.align {
-            s = format!("{}, {}", s, v);
+            s = format!("{s}, {v}");
         }
         if let Some(v) = &self.addrspace {
-            s = format!("{}, {}", s, v);
+            s = format!("{s}, {v}");
         }
         write!(f, "{s}")
     }
@@ -155,9 +155,9 @@ impl std::fmt::Display for Load {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         let mut s = format!("%{} = load", self.result);
         if self.volatile.is_some() {
-            s = format!("{} volatile", s);
+            s = format!("{s} volatile");
         }
-        s = format!("{} {}, {}* {}", s, self.ty, self.ty_pointer, self.pointer);
+        s = format!("{s} {}, {}* {}", self.ty, self.ty_pointer, self.pointer);
         if let Some(v) = &self.align {
             s = format!("{s}, {v}");
         }
@@ -169,7 +169,7 @@ impl std::fmt::Display for Store {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         let mut s = "store".to_string();
         if self.volatile.is_some() {
-            s = format!("{} volatile", s);
+            s = format!("{s} volatile");
         }
         let pointer = if let Some(ctx) = self.ctx {
             ctx.to_string()
@@ -181,7 +181,7 @@ impl std::fmt::Display for Store {
             s, self.ty, self.value, self.ty_pointer, pointer
         );
         if let Some(v) = &self.align {
-            s = format!("{}, {}", s, v);
+            s = format!("{s}, {v}");
         }
         write!(f, "{s}")
     }
@@ -191,7 +191,7 @@ impl std::fmt::Display for GetElementPtr {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         let mut s = format!("%{} = getelementptr", self.result);
         if self.inbounds.is_some() {
-            s = format!("{} inbounds", s);
+            s = format!("{s} inbounds");
         }
         let s_val = format!("{}, {}* {}", self.ty, self.ty_pointer, self.ptr_val);
         let r = self.range_val.iter().fold("".to_string(), |s, v| {

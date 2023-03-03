@@ -43,22 +43,22 @@ impl std::fmt::Display for Alias {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         let mut s = format!("@{} =", self.name);
         if self.linkage.is_some() {
-            s = format!("{} {}", s, self.linkage.as_ref().unwrap());
+            s = format!("{s} {}", self.linkage.as_ref().unwrap());
         }
         if self.preemption_specifier.is_some() {
-            s = format!("{} {}", s, self.preemption_specifier.as_ref().unwrap());
+            s = format!("{s} {}", self.preemption_specifier.as_ref().unwrap());
         }
         if self.visibility.is_some() {
-            s = format!("{} {}", s, self.visibility.as_ref().unwrap());
+            s = format!("{s} {}", self.visibility.as_ref().unwrap());
         }
         if self.dll_storage_classes.is_some() {
-            s = format!("{} {}", s, self.dll_storage_classes.as_ref().unwrap());
+            s = format!("{s} {}", self.dll_storage_classes.as_ref().unwrap());
         }
         if self.thread_local.is_some() {
-            s = format!("{} {}", s, self.thread_local.as_ref().unwrap());
+            s = format!("{s} {}", self.thread_local.as_ref().unwrap());
         }
         if self.unnamed_addr.is_some() {
-            s = format!("{} {}", s, self.unnamed_addr.as_ref().unwrap());
+            s = format!("{s} {}", self.unnamed_addr.as_ref().unwrap());
         }
         s = format!("{} alias", s);
 
@@ -69,12 +69,12 @@ impl std::fmt::Display for Alias {
             .fold(s, |x, (ctr, ty)| {
                 // Calculation for comma for 1-th element
                 if ctr == 0 {
-                    format!("{} {},", x, ty)
+                    format!("{x} {ty},")
                 } else {
-                    format!("{} {}", x, ty)
+                    format!("{x} {ty}")
                 }
             });
-        let s = format!("{} @{}", s, self.aleasee);
+        let s = format!("{s} @{}", self.aleasee);
 
         write!(f, "{s}")
     }

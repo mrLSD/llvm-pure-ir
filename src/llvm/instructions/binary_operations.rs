@@ -208,7 +208,7 @@ impl std::fmt::Display for Add {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         let mut s = "add".to_string();
         if self.nuw.is_some() {
-            s = format!("{} nuw", s)
+            s = format!("{s} nuw")
         }
         if self.nsw.is_some() {
             s = format!("{s} nsw")
@@ -225,7 +225,7 @@ impl std::fmt::Display for FAdd {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         let mut s = "fadd".to_string();
         if let Some(v) = &self.fast_math_flags {
-            s = format!("{} {}", s, v)
+            s = format!("{s} {v}")
         }
         s = format!(
             "{} = {} {} {}, {}",
@@ -287,11 +287,11 @@ impl std::fmt::Display for UDiv {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         let mut s = "udiv".to_string();
         if self.exact.is_some() {
-            s = format!("{} exact", s)
+            s = format!("{s} exact")
         }
         s = format!(
-            "{} = {} {} {}, {}",
-            self.result, s, self.ty, self.op1, self.op2
+            "{} = {s} {} {}, {}",
+            self.result, self.ty, self.op1, self.op2
         );
         write!(f, "{s}")
     }
@@ -301,7 +301,7 @@ impl std::fmt::Display for SDiv {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         let mut s = "sdiv".to_string();
         if self.exact.is_some() {
-            s = format!("{} exact", s)
+            s = format!("{s} exact")
         }
         s = format!(
             "{} = {} {} {}, {}",

@@ -61,10 +61,10 @@ impl std::fmt::Display for Extractvalue {
         let idx = self
             .idx
             .iter()
-            .fold("".to_string(), |s, v| format!("{}, {}", s, v));
+            .fold(String::new(), |s, v| format!("{s}, {v}"));
         let s = format!(
-            "{} = extractvalue {} {} {}",
-            self.result, self.aggregate_type, self.val, idx
+            "{} = extractvalue {} {} {idx}",
+            self.result, self.aggregate_type, self.val
         );
         write!(f, "{s}")
     }
@@ -75,10 +75,10 @@ impl std::fmt::Display for Insertvalue {
         let idx = self
             .idx
             .iter()
-            .fold("".to_string(), |s, v| format!("{}, {}", s, v));
+            .fold(String::new(), |s, v| format!("{s}, {v}"));
         let s = format!(
-            "{} = insertvalue {} {}, {} {} {}",
-            self.result, self.aggregate_type, self.val, self.ty, self.elt, idx
+            "{} = insertvalue {} {}, {} {} {idx}",
+            self.result, self.aggregate_type, self.val, self.ty, self.elt,
         );
         write!(f, "{s}")
     }

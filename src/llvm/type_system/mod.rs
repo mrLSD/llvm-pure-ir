@@ -52,16 +52,16 @@ impl std::fmt::Display for FunctionType {
             .fold("".to_string(), |s, (i, t)| {
                 // Check for comma
                 if i > 0 {
-                    format!("{}, {}", s, t)
+                    format!("{s}, {t}")
                 } else {
-                    format!("{} {}", s, t)
+                    format!("{s} {t}")
                 }
             });
         let s = if self.variable_argument {
             if s.is_empty() {
                 "...".to_string()
             } else {
-                format!("{}, ...", s)
+                format!("{s}, ...")
             }
         } else {
             s

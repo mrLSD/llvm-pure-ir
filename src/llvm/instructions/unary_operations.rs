@@ -29,11 +29,11 @@ impl std::fmt::Display for FNeg {
         let s = self
             .fast_math_flags
             .iter()
-            .fold("".to_string(), |s, x| format!("{} {}", s, x));
+            .fold(String::new(), |s, x| format!("{s} {x}"));
         write!(
             f,
-            "{} = fneg {} {} %{}",
-            self.result, s, self.ty, self.operand
+            "{} = fneg {s} {} %{}",
+            self.result, self.ty, self.operand
         )
     }
 }
