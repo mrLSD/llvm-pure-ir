@@ -14,6 +14,12 @@ pub struct IntegerType<N>(N);
 #[derive(Debug, Eq, PartialEq, Clone)]
 pub struct Integer1Type;
 
+impl<N> IntegerType<N> {
+    pub fn new(n: N) -> Self {
+        Self(n)
+    }
+}
+
 #[derive(Debug, Eq, PartialEq, Clone)]
 pub struct Integer8Type;
 
@@ -44,19 +50,21 @@ pub enum FloatingPointType {
     PpcFp128,
 }
 
-/// The pointer type is used to specify memory locations. Pointers are
-/// commonly used to reference objects in memory.
+/// The pointer type ptr is used to specify memory locations. Pointers
+/// are commonly used to reference objects in memory.
 ///
 /// Pointer types may have an optional address space attribute defining
-/// the numbered address space where the pointed-to object resides. The
-/// default address space is number zero. The semantics of non-zero address
-/// spaces are target-specific.
-///
-/// Note that LLVM does not permit pointers to void (void*) nor does it
-/// permit pointers to labels (label*). Use i8* instead.
+/// the numbered address space where the pointed-to object resides. For
+/// example, ptr addrspace(5) is a pointer to address space 5.
 /// [pointer-type](https://llvm.org/docs/LangRef.html#pointer-type)
 #[derive(Debug, Eq, PartialEq, Clone)]
-pub struct PointerType(pub Box<Type>);
+pub struct PointerType(Option<i64>);
+
+impl PointerType {
+    pub fn new(addr: Option<i64>) -> Self {
+        Self(addr)
+    }
+}
 
 /// A vector type is a simple derived type that represents a vector of
 /// elements. Vector types are used when multiple primitive data are
@@ -133,7 +141,11 @@ impl std::fmt::Display for FloatingPointType {
 
 impl std::fmt::Display for PointerType {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        write!(f, "{}*", self.0)
+        let s = self
+            .0
+            .map_or("ptr".to_string(), |v| format!("ptr addrspace({:?})", v));
+
+        write!(f, "{s}")
     }
 }
 

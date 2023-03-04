@@ -191,8 +191,8 @@ pub struct FunctionArg(pub Type, pub String);
 /// 10. The optional function attributes list.
 /// 11. The optional operand bundles list.
 ///
-/// https://llvm.org/docs/LangRef.html#callbr-instruction
-/// TODO: implement Syntax.
+/// [callbr-instruction](https://llvm.org/docs/LangRef.html#callbr-instruction)
+// TODO: implement Syntax.
 #[derive(Debug, Eq, PartialEq, Clone)]
 pub struct CallBr();
 

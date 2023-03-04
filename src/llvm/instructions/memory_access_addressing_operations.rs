@@ -76,9 +76,9 @@ pub struct Load {
 /// the optimizer is not allowed to modify the number or order of
 /// execution of this store with other volatile operations. Only
 /// values of first class types of known size (i.e. not containing
-/// an opaque structural type) can be stored.
+/// a   n opaque structural type) can be stored.
 ///
-/// https://llvm.org/docs/LangRef.html#store-instruction
+/// [store-instruction](https://llvm.org/docs/LangRef.html#store-instruction)
 #[derive(Debug, Eq, PartialEq, Clone)]
 pub struct Store {
     pub volatile: Option<()>,

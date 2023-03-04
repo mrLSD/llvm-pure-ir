@@ -12,6 +12,7 @@ pub enum Type {
     Integer32,
     Integer64,
     Integer128,
+    Integer(i128),
     FloatingPoint(FloatingPointType),
     Pointer(PointerType),
     Vector(VectorType),
@@ -30,6 +31,7 @@ impl std::fmt::Display for Type {
             Type::Integer32 => format!("{Integer32Type}"),
             Type::Integer64 => format!("{Integer64Type}"),
             Type::Integer128 => format!("{Integer128Type}"),
+            Type::Integer(n) => format!("{}", IntegerType::new(n)),
             Type::FloatingPoint(x) => format!("{x}"),
             Type::Pointer(x) => format!("{x}"),
             Type::Vector(x) => format!("{x}"),
@@ -41,26 +43,11 @@ impl std::fmt::Display for Type {
 }
 
 impl Type {
-    #[must_use]
-    pub fn pointer1(ty: Type) -> Self {
-        Type::Pointer(PointerType(Box::new(ty)))
+    pub fn pointer() -> Self {
+        Type::Pointer(PointerType::new(None))
     }
 
-    #[must_use]
-    pub fn pointer2(ty: Type) -> Self {
-        let ty1 = Type::Pointer(PointerType(Box::new(ty)));
-        Type::Pointer(PointerType(Box::new(ty1)))
-    }
-
-    #[must_use]
-    pub fn pointer3(ty: Type) -> Self {
-        let ty1 = Type::Pointer(PointerType(Box::new(ty)));
-        let ty2 = Type::Pointer(PointerType(Box::new(ty1)));
-        Type::Pointer(PointerType(Box::new(ty2)))
-    }
-
-    #[must_use]
-    pub fn raw_string(s: &str) -> String {
-        format!(r#"c"{s}\00""#)
+    pub fn pointer_with_addrspace(addr: i64) -> Self {
+        Type::Pointer(PointerType::new(Some(addr)))
     }
 }
